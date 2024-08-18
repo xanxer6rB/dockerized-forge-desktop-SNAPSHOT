@@ -23,7 +23,7 @@ WORKDIR /config
 VOLUME /config
 
 RUN \
-    sudo apk update; sudo apk upgrade -y; sudo apk add bzip2 wget curl; rm -rf /var/cache/apk/* && \
+    sudo apk update; sudo apk upgrade -y; sudo apk add bzip2 wget curl -y; rm -rf /var/cache/apk/* && \
     sudo mkdir /app/forge-desktop-SNAPSHOT/ && \
     sudo touch setup_forge_desktop_snapshot.sh && \ 
     echo "mkdir /config/forge-desktop-SNAPSHOT; sudo wget -r -l1 -np 'https://downloads.cardforge.org/dailysnapshots/' -A 'forge-gui-desktop-*.tar.bz2'; echo 'EXTRACTING FILES TO /app/forge-desktop-SNAPSHOT'; sudo mv /config/downloads.cardforge.org/dailysnapshots/* /app/forge-desktop-SNAPSHOT; sudo bzip2 -d /app/forge-desktop-SNAPSHOT/*; sudo tar -xf /app/forge-desktop-SNAPSHOT/*; sudo mv /config/forge_game_selector.sh /tmp/forge_game_selector.sh; sudo mv /config/* /app/forge-desktop-SNAPSHOT; sudo mv /app/forge-desktop-SNAPSHOT/ssl /config; echo 'RUNNING CLEANING UP'; sudo rm -rf /app/forge-desktop-SNAPSHOT/downloads.cardforge.org; sudo mv /tmp/forge_game_selector.sh /config; echo 'SETUP COMPLETE','RUN ./forge_game_selector.sh TO SELECT A GAME MODE'" > /config/setup_forge_desktop_snapshot.sh && \
